@@ -4,13 +4,13 @@
     <!-- Add a view for  ROP website page. -->
     <template id="rop_website_page" name="ROP Products">
         <t t-call="website.layout">
-            <t t-set="additional_title">ROP</t>
+            <t t-set="additional_title">ROP Products</t>
 
             <div id="wrap" class="oe_structure">
                 <section class="container py-5">
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <div>
-                            <h1 class="mb-1">ROP</h1>
+                            <h1 class="mb-1">ROP Products</h1>
                             <p class="text-muted mb-0">Products with ROP Count less than 5</p>
                         </div>
                         <span class="badge text-bg-secondary fs-6">
