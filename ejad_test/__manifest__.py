@@ -14,6 +14,7 @@
     'assets': {
         'web.assets_frontend': [
             'ejad_test/static/src/js/rop_realtime.js',
+            'ejad_test/static/src/js/rop_api.js',
         ],
         'point_of_sale._assets_pos': [
             'ejad_test/static/src/js/product_screen.js',

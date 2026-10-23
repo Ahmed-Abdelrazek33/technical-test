@@ -48,3 +48,20 @@ class ROPWebsiteController(http.Controller):
         products = request.env['product.template'].sudo().search(
             [('qty_available', '>', 5)], order='name asc')
         return [{'name': product.name, 'qty': product.qty_available} for product in products]
+
+    @http.route('/rop-product', type='http', auth='user', methods=['GET'])
+    def rop_product(self, **kwargs):
+        if not self._can_access_rop_page():
+            return request.make_json_response({'error': 'Access denied'}, status=403)
+        products = request.env['product.template'].sudo().search(
+            [('qty_available', '<', 5)], order='name asc')
+        return request.make_json_response([
+            {'id': product.id, 'name': product.name, 'qty': product.qty_available}
+            for product in products
+        ])
+
+    @http.route('/rop/api', type='http', auth='user', website=True, sitemap=False)
+    def rop_api_page(self, **kwargs):
+        if not self._can_access_rop_page():
+            return request.not_found()
+        return request.render('ejad_test.rop_api_page')

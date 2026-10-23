@@ -119,4 +119,31 @@
         </t>
     </template>
 
+    <template id="rop_api_page" name="ROP API">
+        <t t-call="website.layout">
+            <t t-set="additional_title">ROP API</t>
+
+            <div id="wrap" class="oe_structure">
+                <section class="container py-5">
+                    <h1 class="mb-1">ROP API</h1>
+                    <p class="text-muted">Calls <code>/rop-product</code> and shows the products with quantity less than 5</p>
+
+                    <button id="rop_api_load" type="button" class="btn btn-primary mb-3">Load products</button>
+                    <span id="rop_api_status" class="ms-3 text-muted"/>
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Product</th>
+                                <th>Quantity On Hand</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rop_api_body"/>
+                    </table>
+                </section>
+            </div>
+        </t>
+    </template>
+
 </odoo>

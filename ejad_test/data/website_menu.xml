@@ -25,4 +25,16 @@
         <field name="sequence" type="int">26</field>
     </record>
 
+    <record id="website_menu_rop_api" model="website.menu">
+        <field name="name">ROP API</field>
+        <field name="url">/rop/api</field>
+        <field name="parent_id"
+               search="[
+                   ('url', '=', '/default-main-menu'),
+                   ('website_id', '=', 1)
+               ]"/>
+        <field name="website_id">1</field>
+        <field name="sequence" type="int">27</field>
+    </record>
+
 </odoo>
