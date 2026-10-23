@@ -1,6 +1,16 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<odoo>
-    <data>
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
 
-    </data>
+    <record id="website_menu_rop" model="website.menu">
+        <field name="name">ROP</field>
+        <field name="url">/rop</field>
+        <field name="parent_id"
+               search="[
+                   ('url', '=', '/default-main-menu'),
+                   ('website_id', '=', 1)
+               ]"/>
+        <field name="website_id">1</field>
+        <field name="sequence" type="int">25</field>
+    </record>
+
 </odoo>
