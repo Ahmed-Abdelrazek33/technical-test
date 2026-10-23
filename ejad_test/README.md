@@ -36,3 +36,22 @@ custom flows that navigate directly to payment. No notifications are created.
 ## Validation status
 Python/JavaScript syntax and ZIP structure checked during packaging.
 An Odoo 17 instance was not available for installation or browser integration testing.
+
+## API Task 1 - POS Orders by Date Range
+
+Endpoint:
+
+```text
+GET /api/pos/orders?start_date=YYYY-MM-DD&end_date=YYYY-MM-DD
+```
+
+Authentication: logged-in Odoo user (`auth='user'`).
+
+Example:
+
+```text
+/api/pos/orders?start_date=2026-10-01&end_date=2026-10-23
+```
+
+The date range is inclusive. The response contains the POS order ID, reference,
+order date, state, customer, POS session, total, tax, and currency.
