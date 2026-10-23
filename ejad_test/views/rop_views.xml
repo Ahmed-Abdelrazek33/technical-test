@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="product_template_form_rop" model="ir.ui.view">
+        <field name="name">product.template.form.rop</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button name="action_view_rop_products" type="object" class="oe_stat_button"
+                        icon="fa-cubes" invisible="not has_rop">
+                    <field name="rop_product_count" widget="statinfo" string="ROP Products"/>
+                </button>
+            </div>
+            <field name="categ_id" position="after">
+                <field name="has_rop"/>
+                <field name="rop_count" invisible="not has_rop"/>
+            </field>
+        </field>
+    </record>
+
+
+    <record id="product_template_tree_rop" model="ir.ui.view">
+        <field name="name">product.template.tree.rop</field>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="default_code"/>
+                <field name="qty_available"/>
+                <field name="rop_count"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_rop_products" model="ir.actions.act_window">
+        <field name="name">ROP Products</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_id" ref="product_template_tree_rop"/>
+        <field name="domain">[('has_rop', '=', True)]</field>
+    </record>
+
+    <record id="action_products_above_rop" model="ir.actions.act_window">
+        <field name="name">Products &gt; ROP</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_id" ref="product_template_tree_rop"/>
+        <field name="domain">[('above_rop', '=', True)]</field>
+    </record>
+
+    <menuitem id="menu_rop" name="ROP" parent="stock.menu_stock_root" sequence="4"/>
+    <menuitem id="menu_rop_products" name="ROP Products" parent="menu_rop"
+              action="action_rop_products" sequence="1"/>
+    <menuitem id="menu_products_above_rop" name="Products &gt; ROP" parent="menu_rop"
+              action="action_products_above_rop" sequence="2"/>
+</odoo>

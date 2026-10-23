@@ -6,6 +6,7 @@
     'author': 'Ahmed Abdelrazek',
     'license': 'LGPL-3',
     'depends': ['point_of_sale', 'stock'],
+    'data': ['views/rop_views.xml'],
     'assets': {
         'point_of_sale._assets_pos': [
             'ejad_test/static/src/js/product_screen.js',
