@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <!-- Task 1: secured ROP website page. -->
+    <!-- Add a view for  ROP website page. -->
     <template id="rop_website_page" name="ROP Products">
         <t t-call="website.layout">
             <t t-set="additional_title">ROP</t>
