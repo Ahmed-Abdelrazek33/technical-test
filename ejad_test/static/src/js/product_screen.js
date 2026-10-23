@@ -22,3 +22,17 @@ patch(Order.prototype, {
     },
 });
 
+patch(PaymentScreen.prototype, {
+    async validateOrder() {
+        const partner = this.currentOrder.get_partner();
+        const phone = partner && partner.phone;
+        const error = !partner ? _t("Please select a customer.")
+            : !phone ? _t("The customer must have a phone number.")
+            : !phone.startsWith("+2") ? _t("The customer phone must start with +2.")
+            : "";
+        if (error) {
+            return this.popup.add(ErrorPopup, { title: _t("Customer Validation"), body: error });
+        }
+        return super.validateOrder(...arguments);
+    },
+});
