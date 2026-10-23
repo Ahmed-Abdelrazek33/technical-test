@@ -4,6 +4,7 @@ import { Order } from "@point_of_sale/app/store/models";
 import { ErrorPopup } from "@point_of_sale/app/errors/popups/error_popup";
 import { patch } from "@web/core/utils/patch";
 import { _t } from "@web/core/l10n/translation";
+import { PaymentScreen } from "@point_of_sale/app/screens/payment_screen/payment_screen";
 
 patch(Order.prototype, {
     async pay() {
@@ -20,3 +21,4 @@ patch(Order.prototype, {
         return super.pay(...arguments);
     },
 });
+
