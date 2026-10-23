@@ -89,4 +89,34 @@
         </t>
     </template>
 
+    <template id="rop_realtime_page" name="Real-time ROP">
+        <t t-call="website.layout">
+            <t t-set="additional_title">Real-time ROP</t>
+
+            <div id="wrap" class="oe_structure">
+                <section class="container py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <h1 class="mb-1">Real-time ROP</h1>
+                            <p class="text-muted mb-0">Products with quantity greater than 5, updated automatically</p>
+                        </div>
+                        <span class="badge text-bg-secondary fs-6">
+                            <span id="rop_realtime_count">0</span> Product(s)
+                        </span>
+                    </div>
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity On Hand</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rop_realtime_body"/>
+                    </table>
+                </section>
+            </div>
+        </t>
+    </template>
+
 </odoo>

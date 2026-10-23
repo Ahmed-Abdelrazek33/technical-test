@@ -13,4 +13,16 @@
         <field name="sequence" type="int">25</field>
     </record>
 
+    <record id="website_menu_rop_realtime" model="website.menu">
+        <field name="name">Real-time ROP</field>
+        <field name="url">/rop/realtime</field>
+        <field name="parent_id"
+               search="[
+                   ('url', '=', '/default-main-menu'),
+                   ('website_id', '=', 1)
+               ]"/>
+        <field name="website_id">1</field>
+        <field name="sequence" type="int">26</field>
+    </record>
+
 </odoo>

@@ -15,5 +15,5 @@ class WebsiteMenu(models.Model):
         )
 
         for menu in self:
-            if menu.url == "/rop" and not can_see_rop:
+            if menu.url in ("/rop", "/rop/realtime") and not can_see_rop:
                 menu.is_visible = False

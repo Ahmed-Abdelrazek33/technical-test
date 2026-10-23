@@ -34,3 +34,17 @@ class ROPWebsiteController(http.Controller):
             return request.not_found()
         request.env['product.template'].browse(int(product_id)).update_quantity_on_hand(int(quantity))
         return request.redirect('/rop')
+
+    @http.route('/rop/realtime', type='http', auth='user', website=True, sitemap=False)
+    def rop_realtime(self, **kwargs):
+        if not self._can_access_rop_page():
+            return request.not_found()
+        return request.render('ejad_test.rop_realtime_page')
+
+    @http.route('/rop/realtime/data', type='json', auth='user')
+    def rop_realtime_data(self):
+        if not self._can_access_rop_page():
+            return []
+        products = request.env['product.template'].sudo().search(
+            [('qty_available', '>', 5)], order='name asc')
+        return [{'name': product.name, 'qty': product.qty_available} for product in products]
