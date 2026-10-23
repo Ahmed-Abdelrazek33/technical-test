@@ -5,8 +5,11 @@
     'summary': '',
     'author': 'Ahmed Abdelrazek',
     'license': 'LGPL-3',
-    'depends': ['point_of_sale', 'stock'],
-    'data': ['views/rop_views.xml'],
+    'depends': ['point_of_sale', 'stock', 'website_sale'],
+    'data': [
+        'views/rop_views.xml',
+        'views/rop_website_templates.xml',
+    ],
     'assets': {
         'point_of_sale._assets_pos': [
             'ejad_test/static/src/js/product_screen.js',

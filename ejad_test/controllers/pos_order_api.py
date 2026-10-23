@@ -23,12 +23,6 @@ class PosOrderApi(http.Controller):
         csrf=False,
     )
     def get_pos_orders_by_date(self, start_date=None, end_date=None, **kwargs):
-        """Return POS orders whose order date falls within an inclusive date range.
-
-        Query parameters:
-            start_date: YYYY-MM-DD
-            end_date:   YYYY-MM-DD
-        """
         if not start_date or not end_date:
             return self._json_response({
                 'success': False,
@@ -56,7 +50,6 @@ class PosOrderApi(http.Controller):
                 'message': 'start_date cannot be greater than end_date.',
             }, status=400)
 
-        # Use an exclusive upper boundary so the complete end_date is included.
         start_datetime = fields.Datetime.to_string(fields.Datetime.to_datetime(start))
         end_datetime = fields.Datetime.to_string(
             fields.Datetime.to_datetime(end + timedelta(days=1))
@@ -151,7 +144,6 @@ class PosOrderApi(http.Controller):
                 'message': 'Invalid JSON body.',
             }, status=400)
 
-        # Also allow regular form parameters as a fallback.
         product_id = payload.get('product_id', kwargs.get('product_id'))
         rop_count = payload.get('rop_count', kwargs.get('rop_count'))
 

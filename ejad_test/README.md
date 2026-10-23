@@ -55,3 +55,35 @@ Example:
 
 The date range is inclusive. The response contains the POS order ID, reference,
 order date, state, customer, POS session, total, tax, and currency.
+
+## API Endpoints
+
+### 1. POS Orders by Date Range
+`GET /api/pos/orders?start_date=YYYY-MM-DD&end_date=YYYY-MM-DD`
+
+Returns all POS orders whose `date_order` is inside the inclusive date range.
+
+### 2. Products With ROP Count
+`GET /api/rop/products`
+
+Returns product templates where `Has ROP` is enabled and `ROP Count` is greater than zero.
+
+### 3. Update Product ROP Count
+`POST /api/rop/product`
+
+JSON body example:
+```json
+{
+    "product_id": 10,
+    "rop_count": 5
+}
+```
+
+Updates the selected product template and enables `Has ROP` automatically.
+
+### 4. POS Orders by Session
+`GET /api/pos/session/<session_id>/orders`
+
+Returns all POS orders belonging to the selected POS session.
+
+All API routes currently use `auth='user'`, so an authenticated Odoo session is required.
