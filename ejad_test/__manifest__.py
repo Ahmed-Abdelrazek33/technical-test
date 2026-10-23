@@ -10,7 +10,6 @@
         'views/rop_views.xml',
         'views/rop_website_templates.xml',
         'data/website_menu.xml',
-
     ],
     'assets': {
         'point_of_sale._assets_pos': [

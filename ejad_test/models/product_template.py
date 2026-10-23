@@ -25,6 +25,27 @@ class ProductTemplate(models.Model):
         products = self.search([('has_rop', '=', True)]).filtered(lambda p: p.qty_available > p.rop_count)
         return [('id', 'in', products.ids)]
 
+    def update_quantity_on_hand(self, quantity):
+        self.ensure_one()
+        product = self.sudo()
+        old_quantity = product.qty_available
+        warehouse = self.env['stock.warehouse'].sudo().search(
+            [('company_id', '=', self.env.company.id)], limit=1)
+        quant = self.env['stock.quant'].sudo().with_context(inventory_mode=True).create({
+            'product_id': product.product_variant_id.id,
+            'location_id': warehouse.lot_stock_id.id,
+            'inventory_quantity': quantity,
+        })
+        quant.action_apply_inventory()
+        admins = self.env.ref('stock.group_stock_manager').sudo().users.partner_id - self.env.user.partner_id
+        product.message_post(
+            partner_ids=admins.ids,
+            subject='Product quantity updated: %s' % product.name,
+            body='%s updated the quantity of %s from %s to %s.' % (
+                self.env.user.name, product.name, old_quantity, product.qty_available),
+            subtype_xmlid='mail.mt_comment',
+        )
+
     def action_view_rop_products(self):
         self.ensure_one()
         return {

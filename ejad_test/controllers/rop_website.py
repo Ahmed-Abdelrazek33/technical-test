@@ -27,3 +27,10 @@ class ROPWebsiteController(http.Controller):
         return request.render('ejad_test.rop_website_page', {
             'products': products,
         })
+
+    @http.route('/rop/update_quantity', type='http', auth='user', methods=['POST'], website=True)
+    def update_quantity(self, product_id, quantity, **kwargs):
+        if not self._can_access_rop_page():
+            return request.not_found()
+        request.env['product.template'].browse(int(product_id)).update_quantity_on_hand(int(quantity))
+        return request.redirect('/rop')
