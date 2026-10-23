@@ -9,6 +9,8 @@
     'assets': {
         'point_of_sale._assets_pos': [
             'ejad_test/static/src/js/product_screen.js',
+            'ejad_test/static/src/js/cash_now_button.js',
+            'ejad_test/static/src/xml/cash_now_button.xml',
         ],
     },
     'installable': True,
